@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import "../models/SessionModel.js";
 
 async function database() {
     try {

@@ -19,4 +19,16 @@ export default class Validations {
                 .error(new Error("Password is invalid")),
         }).validateAsync(data);
     }
+    static async LoginValidation(data) {
+        return await Joi.object({
+            username: Joi.string()
+                .required()
+                .regex(/^(?=.{5,16}$)(?![_])(?!.*[_]{2})[a-zA-Z0-9_]+(?<![_])$/)
+                .error(new Error("Username is invalid")),
+            password: Joi.string()
+                .required()
+                .min(4)
+                .error(new Error("Password is invalid")),
+        }).validateAsync(data);
+    }
 }
