@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import morgan from "morgan";
 import database from "./modules/mongoose.js";
+import routes from "./routes/routes.js";
 const PORT = process.env.PORT || 8070;
 const __dirname = path.resolve();
 
@@ -25,7 +26,7 @@ async function server(mode) {
     } catch (error) {
         console.log("SERVER ERROR:", error + "");
     } finally {
-        //
+        routes(app);
     }
 }
 
