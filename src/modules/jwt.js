@@ -1,7 +1,7 @@
 import { sign, verify } from "jsonwebtoken";
 
 export default function createToken(token) {
-    return verify(token, process.env.SECRET_KEY);
+    return sign(token, process.env.SECRET_KEY);
 }
 
 
