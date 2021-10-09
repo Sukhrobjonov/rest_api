@@ -27,22 +27,12 @@ export default class UserRouteController {
                 password: await genCrypt(password),
             });
 
-            const session = await sessions.create({
-                owner_id: user._id,
-                session: req.headers["user-agent"],
-            });
-
-            const token = createToken({
-                session_id: session._id,
-            });
-
             res.status(200).json({
                 ok: true,
                 message: "User created successfully",
-                data: {
-                    token,
-                },
             });
+
+            console.log(user);
         } catch (error) {
             if (error.name === "MongoServerError" && error.code === 11000) {
                 next(new Error("Username must be unique"));
@@ -63,21 +53,21 @@ export default class UserRouteController {
 
             const isTrust = await compareHash(user.password, password);
 
-            // const session = await sessions.create({
-            //     owner_id: user._id,
-            //     session: req.headers["user-agent"],
-            // });
+            const session = await sessions.create({
+                owner_id: user._id,
+                session: req.headers["user-agent"],
+            });
 
-            // const token = createToken({
-            //     session_id: session._id,
-            // });
+            const token = createToken({
+                session_id: session._id,
+            });
 
             res.status(200).json({
                 ok: true,
                 message: "User logined successfully",
-                // data: {
-                //     token,
-                // },
+                data: {
+                    token,
+                },
             });
         } catch (error) {
             next(error);
