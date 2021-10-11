@@ -1,5 +1,5 @@
 import NotFoundMiddleware from "../middlewares/notFoundMiddleware.js";
-import { handleErrorCheck } from "../modules/errorHandler.js";
+import { handleErrorCheck } from "../middlewares/errorHandler.js";
 import HomeRoute from "./HomeRoute.js";
 import UserRoute from "./UserRoute.js";
 

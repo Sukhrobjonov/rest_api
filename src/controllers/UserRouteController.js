@@ -41,6 +41,7 @@ export default class UserRouteController {
             next(error);
         }
     }
+
     static async UserRouteLoginPostController(req, res, next) {
         try {
             const { username, password } = await Validations.LoginValidation(
